@@ -1,19 +1,22 @@
 .sk-container {
+  font-size: 1.4rem;
   position: fixed;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: #666;
   color: #fff;
-  z-index: 99;
+  z-index: 999;
   content: "";
   clear: both;
   display: block;
   text-align: right;
 }
 
+/* !important because we have to hide
+   the button in all the cases */
 .sk-hide-button {
-  display: none;
+  display: none !important;
 }
 
 .sk-buttons {
@@ -79,7 +82,7 @@
   background: rgba(45,45,45,.9); /*#2D2D2D*/
   overflow: hidden;
   position: fixed;
-  z-index: 100;
+  z-index: 1000;
   top: 0;
   left: 0;
   right: 0;
@@ -266,7 +269,7 @@
   padding: 0;
   max-height: calc(100% - 11rem); /*header(5rem) + footer(7rem) + padding(1.5rem)*/
   height: auto;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 0;
   overflow: auto;
   width: auto;
   border: none;

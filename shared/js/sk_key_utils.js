@@ -151,25 +151,24 @@
   function handleSoftKey(e) {
     for (var k in elements) {
       if (elements.hasOwnProperty(k)) {
-        if (e.key === elements[k].accessKey) {
-          e.preventDefault();
-
-          // If menu not open
-          if (!options_menu.open) {
+        // If menu not open
+        if (!options_menu.open) {
+          if (elements[k] && e.key === elements[k].accessKey) {
+            e.preventDefault();
             // Raise event on element
             elements[k].click();
+            break;
           }
-          else {
-            // Binded to LSK
-            if (e.key ===
-                    options_menu.cancelKey) {
-
-              // Close the menu
-              hideOptionsMenu();
-            }
+        }
+        else {
+          // Binded to LSK
+          if (e.key ===
+                  options_menu.cancelKey) {
+            e.preventDefault();
+            // Close the menu
+            hideOptionsMenu();
+            break;
           }
-
-          break;
         }
       }
     }
@@ -243,8 +242,8 @@
     items.forEach(function renderOption(item) {
       var button = document.createElement('button');
       button.type = 'button';
-      if (item.label && item.label.length) {
-        button.textContent = item.label || '';
+      if (item.label) {
+        button.textContent = item.label;
       } else {
         return;
       }
@@ -257,6 +256,7 @@
       // Listener will be removed once we clean up the DOM
       button.addEventListener('click', function (event) {
         item.click();
+        hideOptionsMenu();
       });
 
       menu.appendChild(button);
